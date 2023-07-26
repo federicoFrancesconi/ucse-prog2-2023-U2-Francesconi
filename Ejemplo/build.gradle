@@ -1,5 +1,24 @@
 plugins {
     id 'java'
+    id 'jacoco'
+}
+
+jacoco {
+    toolVersion = "0.8.7"
+}
+
+jacocoTestReport {
+    reports {
+        xml.required;
+        html.required;
+        csv.required;
+    }
+    dependsOn test
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
 }
 
 group 'org.example'
@@ -10,10 +29,13 @@ repositories {
 }
 
 dependencies {
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+    testImplementation 'junit:junit:4.13.2'
+    testImplementation 'org.mockito:mockito-core:4.2.0'
 }
 
 test {
-    useJUnitPlatform()
+    // useJUnitPlatform() // Comment out this line for JUnit 4
+    jacoco {
+        destinationFile = file("$buildDir/jacoco/test.exec")
+    }
 }
