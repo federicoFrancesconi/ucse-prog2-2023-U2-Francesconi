@@ -1,4 +1,4 @@
-package org.example.Ejercicio3;
+package org.example.Ejercicio3y4;
 import java.util.Random;
 
 public class GeneracionNumeroAleatorio {

@@ -1,14 +1,16 @@
-package org.example.Ejercicio3;
+package org.example.Ejercicio3y4;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 
-public class ImplementacionCompletableFuture {
+public class Ejercicio3 {
     public static void main(String[] args) throws InterruptedException, ExecutionException {
+        SimulacionTarea simulador = new SimulacionTarea();
+
         //Genera cuatro instancias de completableFuture para generar las cuatro tareas
-        CompletableFuture<Integer> tarea1 = CompletableFuture.supplyAsync(() -> simularTarea());
-        CompletableFuture<Integer> tarea2 = CompletableFuture.supplyAsync(() -> simularTarea());
-        CompletableFuture<Integer> tarea3 = CompletableFuture.supplyAsync(() -> simularTarea());
-        CompletableFuture<Integer> tarea4 = CompletableFuture.supplyAsync(() -> simularTarea());
+        CompletableFuture<Integer> tarea1 = CompletableFuture.supplyAsync(() -> simulador.simularTarea());
+        CompletableFuture<Integer> tarea2 = CompletableFuture.supplyAsync(() -> simulador.simularTarea());
+        CompletableFuture<Integer> tarea3 = CompletableFuture.supplyAsync(() -> simulador.simularTarea());
+        CompletableFuture<Integer> tarea4 = CompletableFuture.supplyAsync(() -> simulador.simularTarea());
 
         //Espera a que terminen las cuatro tareas
         CompletableFuture<Void> tareas = CompletableFuture.allOf(tarea1, tarea2, tarea3, tarea4);
@@ -32,19 +34,6 @@ public class ImplementacionCompletableFuture {
 
         //Se asegura de que todas las tareas hayan terminado
         resultFuture.get();
-    }
-
-    private static int simularTarea() {
-        try {
-            //Espera para simular que hace algo
-            Thread.sleep(1000 + (int) (Math.random() * 2000));
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-        //Genera un numero aleatorio entre 100 y 500
-        GeneracionNumeroAleatorio generador = new GeneracionNumeroAleatorio();
-        return generador.generarNumeroAleatorio(100, 500);
     }
 }
 
