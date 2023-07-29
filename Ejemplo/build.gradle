@@ -9,9 +9,9 @@ jacoco {
 
 jacocoTestReport {
     reports {
-        xml.required;
-        html.required;
-        csv.required;
+        xml.required
+        html.required
+        csv.required
     }
     dependsOn test
 }
