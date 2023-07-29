@@ -11,21 +11,15 @@ public class ImplementacionCompletableFuture {
         CompletableFuture<Integer> tarea4 = CompletableFuture.supplyAsync(() -> simularTarea());
 
         //Espera a que terminen las cuatro tareas
-        CompletableFuture<Void> allTasks = CompletableFuture.allOf(tarea1, tarea2, tarea3, tarea4);
+        CompletableFuture<Void> tareas = CompletableFuture.allOf(tarea1, tarea2, tarea3, tarea4);
 
         //Uso un callback para obtener el resultado de las tareas
-        CompletableFuture<Void> resultFuture = allTasks.thenRun(() -> {
+        CompletableFuture<Void> resultFuture = tareas.thenRun(() -> {
             try {
                 int result1 = tarea1.get();
                 int result2 = tarea2.get();
                 int result3 = tarea3.get();
                 int result4 = tarea4.get();
-
-                // Perform any action using the results
-                System.out.println("Task 1 Result: " + result1);
-                System.out.println("Task 2 Result: " + result2);
-                System.out.println("Task 3 Result: " + result3);
-                System.out.println("Task 4 Result: " + result4);
 
                 int sumaResultados = result1 + result2 + result3 + result4;
 
@@ -36,7 +30,7 @@ public class ImplementacionCompletableFuture {
             }
         });
 
-        // Wait for all tasks to complete (this will block until all tasks are done)
+        //Se asegura de que todas las tareas hayan terminado
         resultFuture.get();
     }
 
@@ -48,6 +42,7 @@ public class ImplementacionCompletableFuture {
             e.printStackTrace();
         }
 
+        //Genera un numero aleatorio entre 100 y 500
         GeneracionNumeroAleatorio generador = new GeneracionNumeroAleatorio();
         return generador.generarNumeroAleatorio(100, 500);
     }
