@@ -1,0 +1,2 @@
+JMH S 27 org.example.StreamBenchmark S 62 org.example.jmh_generated.StreamBenchmark_concurrencia_jmhTest S 12 concurrencia S 10 Throughput E A 1 1 1 E E E E E E E E E E E E E E E E E 
+JMH S 27 org.example.StreamBenchmark S 61 org.example.jmh_generated.StreamBenchmark_paralelismo_jmhTest S 11 paralelismo S 10 Throughput E A 1 1 1 E E E E E E E E E E E E E E E E E 
